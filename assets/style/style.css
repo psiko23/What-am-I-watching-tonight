@@ -19,6 +19,7 @@
     justify-content: center;
     margin-top: 20px;
     border-radius: 50px;
+    box-shadow: 0px 0px 15px 10px #5a5a5a;
 }
 
 #listheads {
@@ -119,4 +120,20 @@
     height: 550px;
     background-color: black;
     color: white;
+}
+
+#movies:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+#movies:active {
+    background-color: black;
+}
+
+#shows:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+#shows:active {
+    background-color: black;
 }
