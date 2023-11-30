@@ -393,7 +393,12 @@ const testdata = [
     }
 ];
 
+let randMovieUrl = 'https://api.themoviedb.org/3/discover/movie';
+let genreUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
+let showUrl = 'https://api.themoviedb.org/3/discover/tv?';
 let movieBtn = document.querySelector("#movies");
+let showBtn = document.querySelector("#shows");
+let genreBtn = document.querySelector("#genres");
 let movieData=[];
 
 
@@ -406,7 +411,7 @@ function getNames() {
           }
       };
       
-      fetch('https://api.themoviedb.org/3/discover/movie', options)
+      fetch(randMovieUrl, options)
       .then(function(response){
          return response.json();
       })
@@ -428,7 +433,7 @@ function getGenre(){
         }
       };
       
-      fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+      fetch(genreUrl, options)
         .then(function(response) {
             return response.json();
         })
@@ -437,13 +442,39 @@ function getGenre(){
             // console.log('genreData',response);
         })
         .catch(err => console.error(err));
+        console.log('genreData ', movieGenres);
 }
-
 getGenre();
+// genreBtn.addEventListener('click',function() {
+//     getGenre();
+// })
 
-console.log('genreData ', movieGenres);
 
 movieBtn.addEventListener('click',function(){
     getNames();
 })
 
+let showData=[];
+function getShow() {
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
+        }
+      };
+      
+      fetch(showUrl, options)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response){
+            response.results.forEach(el => showData.push(el));
+        })
+        .catch(err => console.error(err));
+        console.log('showData ',showData);
+}
+
+showBtn.addEventListener('click',function (){
+    getShow();
+})
