@@ -447,4 +447,3 @@ movieBtn.addEventListener('click',function(){
     getNames();
 })
 
-//
