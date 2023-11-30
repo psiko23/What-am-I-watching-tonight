@@ -1,5 +1,6 @@
 body {
     background-image: url("/assets/images/closed-curtains.jpg");
+    background-size: cover;
 }
 
 #header {
