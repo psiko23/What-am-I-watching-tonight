@@ -1,0 +1,129 @@
+body {
+    background-image: url("/assets/images/open-curtains.jpg");
+    background-size: cover;
+    font-family: Poppins;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#save-later {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    margin: 30px;
+    padding: 20px;
+}
+
+#back-main {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    margin: 30px;
+    padding: 20px;
+}
+
+#title-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#feature-name {
+    background-color: black;
+    color: white;
+    margin: 30px;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+#feature-ratings {
+    background-color: black;
+    color: white;
+    margin: 30px;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+#feature-location {
+    background-color: black;
+    color: white;
+    margin: 30px;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 20px;
+}
+
+#body-two {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#left-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#feature-description {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    height: 400px;
+    border-radius: 20px 20px 0px 0px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+#feature-cast-crew {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 25px;
+    border-radius: 0px 0px 20px 20px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    height: 250px;
+}
+
+#feature-trailer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 30px;
+    height: 650px;
+    width: 1200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#save-later:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+#save-later:active {
+    background-color: black;
+}
+
+#back-main:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+#back-main:active {
+    background-color: black;
+}
