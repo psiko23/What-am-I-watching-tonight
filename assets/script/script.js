@@ -446,3 +446,5 @@ console.log('genreData ', movieGenres);
 movieBtn.addEventListener('click',function(){
     getNames();
 })
+
+//
