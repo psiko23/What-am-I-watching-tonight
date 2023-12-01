@@ -44,8 +44,8 @@ body {
     width: 100%;
     font-size: 35px;
     margin-top: 0px;
-    
 }
+
 #listheads {
     display: flex;
     align-items: center;
@@ -67,13 +67,11 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-<<<<<<< HEAD
     height: 80px;
     font-size: 30px;
-=======
     transition: background 1s;
+    transition: background 1s, transform 1s;
     
->>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #shows {
@@ -86,12 +84,11 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-<<<<<<< HEAD
     height: 80px;
     font-size: 30px;
-=======
     transition: background 1s;
->>>>>>> 254740be1be112ed097b73e2f02695d649724b64
+    transition: background 1s, transform 1s;
+    
 }
 
 #custom {
@@ -132,6 +129,8 @@ body {
     background-color: black;
     color: white;
     transition: background 1s;
+    transition: background 1s, transform 1s;
+    
 }
 
 #showlist {
@@ -146,6 +145,7 @@ body {
     background-color: black;
     color: white;
     transition: background 1s;
+    transition: background 1s, transform 1s;
 }
 
 #mylist {
@@ -163,6 +163,7 @@ body {
 
 #movies:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
 
 #movies:active {
@@ -171,6 +172,7 @@ body {
 
 #shows:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
 
 #shows:active {
@@ -183,6 +185,8 @@ body {
 
 #movielist:hover{
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
+    
 }
 
 #showlist:active{
@@ -191,4 +195,5 @@ body {
 
 #showlist:hover{
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
