@@ -1,7 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
 body {
-    background-image: url("/assets/images/open-curtains.jpg");
-    background-size: cover;
-    font-family: Poppins;
+    background: linear-gradient(-45deg, #333131, #1a1616, #db0000, #831010);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
+	height: 100vh;
+}
+@keyframes gradient {
+	50% {
+		background-position: 100% 70%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 #header {
@@ -17,6 +36,7 @@ body {
     font-size: 20px;
     margin: 30px;
     padding: 20px;
+    transition: 1s;
 }
 
 #back-main {
@@ -26,6 +46,7 @@ body {
     font-size: 20px;
     margin: 30px;
     padding: 20px;
+    transition: 1s;
 }
 
 #title-two {
@@ -114,6 +135,7 @@ body {
 
 #save-later:hover {
     background-color: rgb(85, 85, 85);
+
 }
 
 #save-later:active {
