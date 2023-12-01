@@ -5,14 +5,14 @@
 //blanket fetch request for show credits = fectch('https://api.themoviedb.org/3/tv/series_[.id]/credits?language=en-US', options)
 
 //info to be stored for the display.html from the original fetch request
-    //.overview
-    //.title
-    //.vote_average
-    //.release_date
+    //.overview (summary of the movie/series in question)
+    //.title (title)
+    //.vote_average (average score on a scale of 1-10)
+    //.release_date (release date)
 
 //info to be stored from the credits fetch request
-    //.cast
-    //.name
+    //.cast (full cast list of the series/movie will only need to grab the top 2 actors maybe three tbd)
+    //.name 
     //.crew
     //.known_for_department = "directing"
     //.name
