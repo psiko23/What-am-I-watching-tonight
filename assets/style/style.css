@@ -63,17 +63,13 @@ body {
     border-style: solid;
     border-color: black;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 90px;
     width: 20%;
     background-color: black;
     color: white;
-<<<<<<< HEAD
+    transition: background 1s;
     height: 80px;
     font-size: 30px;
-=======
-    transition: background 1s;
-    
->>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #shows {
@@ -86,12 +82,9 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-<<<<<<< HEAD
+    transition: background 1s;
     height: 80px;
     font-size: 30px;
-=======
-    transition: background 1s;
->>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #custom {

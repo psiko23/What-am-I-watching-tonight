@@ -29,6 +29,18 @@ body {
     justify-content: flex-end;
 }
 
+#title {
+    display: flex;
+    height: 100px;
+    color: white;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 #save-later {
     background-color: black;
     color: white;
@@ -54,13 +66,14 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    
 }
 
 #feature-name {
     background-color: black;
     color: white;
     margin: 30px;
-    padding: 20px;
+    padding: 100px 75px;
     font-size: 30px;
     border-radius: 20px;
 }
@@ -69,7 +82,7 @@ body {
     background-color: black;
     color: white;
     margin: 30px;
-    padding: 20px;
+    padding: 100px 150px;
     font-size: 30px;
     border-radius: 20px;
 }
@@ -78,7 +91,7 @@ body {
     background-color: black;
     color: white;
     margin: 30px;
-    padding: 20px;
+    padding: 100px 300px;
     font-size: 30px;
     border-radius: 20px;
 }
@@ -103,7 +116,7 @@ body {
     font-size: 20px;
     height: 400px;
     border-radius: 20px 20px 0px 0px;
-    width: 500px;
+    width: 600px;
     display: flex;
     justify-content: center;
 }
@@ -114,7 +127,7 @@ body {
     padding: 20px;
     font-size: 25px;
     border-radius: 0px 0px 20px 20px;
-    width: 500px;
+    width: 600px;
     display: flex;
     justify-content: center;
     height: 250px;
