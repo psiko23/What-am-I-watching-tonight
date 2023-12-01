@@ -398,13 +398,19 @@ let showUrl = 'https://api.themoviedb.org/3/discover/tv?';
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
-let movieList = document.getElementById('titles');
-// let randMovieList =[];
+let movietitles = document.getElementById('movietitles');
+movietitles.setAttribute('class','p-1')
+
+let showTitles = document.getElementById('showtitles');
+showTitles.setAttribute('class','p-1')
+// let randmovietitles =[];
 // let actors = [];
 
 
+
 function getNames() {
-    let randMovieList =[];
+    let randmovietitles =[];
+    let pageNum= Math.floor(Math.random() * 500);
     const options = {
         method: 'GET',
           headers: {
@@ -413,29 +419,22 @@ function getNames() {
           }
       };
       
-      fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc', options)
+      fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc', options)
       .then(function(response){
          return response.json();
       })
       .then(function(movieNames){
-        movieNames.results.forEach(el => randMovieList.push(el));
-        console.log('randMovieList ',randMovieList);
+        movieNames.results.forEach(el => randmovietitles.push(el));
+        console.log('randmovietitles ',randmovietitles);
 
     for (let i=0;i<10;i++) {
         let randMovieEl = document.createElement('li');
-        randMovieEl.textContent = randMovieList[i].title;
-        console.log('movieTitles', randMovieEl);
-        movieList.append(randMovieEl);
+        randMovieEl.setAttribute('class','p-1 block')
+        randMovieEl.innerHTML = '<a href="./display.html">'+ randmovietitles[i].title+ '</a><hr>';
+        console.log('movieTitles', randMovieEl.textContent);
+        movietitles.append(randMovieEl);
     }
       })
-    
-    // console.log('randMovieList ',randMovieList);
-
-    // for (let i=0;i<randMovieList.length;i++) {
-    //     let randMovieEl = document.createElement('span');
-    //     randMovieEl.textContent = randMovieList[i].title;
-    //     console.log('movieTitles', randMovieEl);
-    // }
 
 }
 
@@ -474,8 +473,9 @@ movieBtn.addEventListener('click',function(){
     getNames();
 })
 
-let showData=[];
 function getShow() {
+    let showData=[];
+    let pageNum = Math.floor(Math.random() * 500);
     const options = {
         method: 'GET',
         headers: {
@@ -484,14 +484,21 @@ function getShow() {
         }
       };
       
-      fetch(showUrl, options)
+      fetch('https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc', options)
         .then(function(response) {
             return response.json();
         })
         .then(function(response){
             console.log(response);
             response.results.forEach(el => showData.push(el));
-        })
+
+        for (let i = 0;i<10;i++) {
+            let showTitleEl = document.createElement('li');
+            showTitleEl.setAttribute('class','p-1 block')
+            showTitleEl.innerHTML = '<a href="./display.html">'+ showData[i].name +'</a><hr>';
+            console.log(showTitleEl.innerHTML);
+            showTitles.append(showTitleEl);
+        }})
         .catch(err => console.error(err));
         console.log('showData ',showData);
 }
@@ -525,8 +532,3 @@ function getMovieById(chosenMovie) {
 getMovieById()
     .then(movieData => console.log(movieData))
     .catch(err => console.log(err));
-
-
-function displayRandMovies(randMovieList) {
-  let title
-}
