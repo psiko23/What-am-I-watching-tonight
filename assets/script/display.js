@@ -10,6 +10,7 @@
     //.vote_average (average score on a scale of 1-10)
     //.release_date (release date)
     //.poster_path (placeholder for trailer for the time being)(?)
+    //.id (movie/tv show id to be used in credits fetch request)
 
 //info to be stored from the credits fetch request
     //.cast (full cast list of the series/movie will only need to grab the top 2 actors maybe three tbd)
