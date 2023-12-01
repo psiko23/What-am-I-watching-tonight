@@ -3,13 +3,28 @@
     <head>
         <meta charset="utf-8">
         <title>What am I Watching Tonight</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Linefont&family=Poppins:wght@500&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"  rel="stylesheet" />
         <link rel="stylesheet" href="./assets/style/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     </head>
     <body>
-        
+        <div id="header">
+            <div id="title"><strong>What Am I Watching Tonight?</strong></div>
+        </div>
+        <div id="listheads">
+            <button id="movies" class="btn">Movies</button>
+            <button id="shows" class="btn">Shows</button>
+            <div id="custom">My List</div>
+        </div>
+        <div id="lists">
+            <div id="movielist"></div>
+            <div id="showlist"></div>
+            <div id="mylist"></div>
+        </div>
         <script src="./assets/script/script.js"></script>
         <script src="./assets/script/display.js"></script>
     </body>
