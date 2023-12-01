@@ -70,6 +70,8 @@ body {
     height: 80px;
     font-size: 30px;
     transition: background 1s;
+    transition: background 1s, transform 1s;
+    
 }
 
 #shows {
@@ -85,6 +87,8 @@ body {
     height: 80px;
     font-size: 30px;
     transition: background 1s;
+    transition: background 1s, transform 1s;
+    
 }
 
 #custom {
@@ -125,6 +129,8 @@ body {
     background-color: black;
     color: white;
     transition: background 1s;
+    transition: background 1s, transform 1s;
+    
 }
 
 #showlist {
@@ -139,6 +145,7 @@ body {
     background-color: black;
     color: white;
     transition: background 1s;
+    transition: background 1s, transform 1s;
 }
 
 #mylist {
@@ -156,6 +163,7 @@ body {
 
 #movies:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
 
 #movies:active {
@@ -164,6 +172,7 @@ body {
 
 #shows:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
 
 #shows:active {
@@ -176,6 +185,8 @@ body {
 
 #movielist:hover{
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
+    
 }
 
 #showlist:active{
@@ -184,4 +195,5 @@ body {
 
 #showlist:hover{
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
