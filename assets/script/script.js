@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
-    }
-  };
-  
-  fetch('https://api.themoviedb.org/3/configuration', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-=======
+
 const testdata = [
     {
         "adult": false,
@@ -406,17 +393,18 @@ const testdata = [
         "vote_count": 3618
     }
 ];
-let randMovieUrl = 'https://api.themoviedb.org/3/discover/movie';
 let genreUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
 let showUrl = 'https://api.themoviedb.org/3/discover/tv?';
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
-let randMovieList =[];
+let movieList = document.getElementById('titles');
+// let randMovieList =[];
 // let actors = [];
 
 
 function getNames() {
+    let randMovieList =[];
     const options = {
         method: 'GET',
           headers: {
@@ -425,16 +413,30 @@ function getNames() {
           }
       };
       
-      fetch(randMovieUrl, options)
+      fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc', options)
       .then(function(response){
          return response.json();
       })
       .then(function(movieNames){
-        console.log(movieNames)
         movieNames.results.forEach(el => randMovieList.push(el));
+        console.log('randMovieList ',randMovieList);
+
+    for (let i=0;i<10;i++) {
+        let randMovieEl = document.createElement('li');
+        randMovieEl.textContent = randMovieList[i].title;
+        console.log('movieTitles', randMovieEl);
+        movieList.append(randMovieEl);
+    }
       })
     
-    console.log('randMovieList ',randMovieList);
+    // console.log('randMovieList ',randMovieList);
+
+    // for (let i=0;i<randMovieList.length;i++) {
+    //     let randMovieEl = document.createElement('span');
+    //     randMovieEl.textContent = randMovieList[i].title;
+    //     console.log('movieTitles', randMovieEl);
+    // }
+
 }
 
 
@@ -523,4 +525,8 @@ function getMovieById(chosenMovie) {
 getMovieById()
     .then(movieData => console.log(movieData))
     .catch(err => console.log(err));
->>>>>>> 6426416cf54bb4929d09328fdaed67a55e0f64f7
+
+
+function displayRandMovies(randMovieList) {
+  let title
+}
