@@ -20,3 +20,5 @@
     //.name
 
 //response.cast[0/1]
+
+//blanket fetch request for where to watch = fetch ('https://api.themoviedb.org/3/(movie or tv)/[.id]/watch/providers', options)
