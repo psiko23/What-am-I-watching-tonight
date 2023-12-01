@@ -392,14 +392,14 @@ const testdata = [
         "vote_count": 3618
     }
 ];
-
 let randMovieUrl = 'https://api.themoviedb.org/3/discover/movie';
 let genreUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
 let showUrl = 'https://api.themoviedb.org/3/discover/tv?';
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
-let movieData=[];
+let randMovieList =[];
+// let actors = [];
 
 
 function getNames() {
@@ -416,10 +416,11 @@ function getNames() {
          return response.json();
       })
       .then(function(movieNames){
-        movieNames.results.forEach(el => movieData.push(el));
+        console.log(movieNames)
+        movieNames.results.forEach(el => randMovieList.push(el));
       })
     
-    console.log('movieData ',movieData);
+    console.log('randMovieList ',randMovieList);
 }
 
 
@@ -443,7 +444,10 @@ function getGenre(){
         })
         .catch(err => console.error(err));
         console.log('genreData ', movieGenres);
+        return movieGenres;
 }
+
+console.log(movieGenres);
 getGenre();
 // genreBtn.addEventListener('click',function() {
 //     getGenre();
@@ -469,6 +473,7 @@ function getShow() {
             return response.json();
         })
         .then(function(response){
+            console.log(response);
             response.results.forEach(el => showData.push(el));
         })
         .catch(err => console.error(err));
@@ -478,3 +483,29 @@ function getShow() {
 showBtn.addEventListener('click',function (){
     getShow();
 })
+
+let movieData;
+function getMovieById(chosenMovie) {
+    // let movieId = chosenMovie.id;
+    let reqUrl = 'https://api.themoviedb.org/3/movie/8871?language=en-US';
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
+        }
+      };
+      
+      return fetch(reqUrl, options)
+        .then(response => response.json())
+        .then(data => {
+            movieData = data;
+            return movieData;
+        })
+        .catch(err => console.log(err));
+
+}
+
+getMovieById()
+    .then(movieData => console.log(movieData))
+    .catch(err => console.log(err));
