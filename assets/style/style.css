@@ -1,10 +1,32 @@
-body {
-    background-image: url("/assets/images/closed-curtains.jpg");
-    background-size: cover;
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
+
+body {
+	background: linear-gradient(-45deg, #333131, #1a1616, #db0000, #831010);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	50% {
+		background-position: 100% 70%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
 #header {
-    font-family: Poppins;
     display: flex;
     width: 100%;
     align-items: center;
@@ -19,18 +41,15 @@ body {
     background-color: black;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    font-size: 40px;
-    justify-content: center;
-    margin-top: 20px;
-    border-radius: 50px;
+    width: 100%;
+    font-size: 35px;
+    margin-top: 0px;
+    
 }
-
 #listheads {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: Poppins;
     margin-top: 50px;
     margin-left: 200px;
     margin-right: 200px;
@@ -48,6 +67,13 @@ body {
     width: 20%;
     background-color: black;
     color: white;
+<<<<<<< HEAD
+    height: 80px;
+    font-size: 30px;
+=======
+    transition: background 1s;
+    
+>>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #shows {
@@ -60,6 +86,12 @@ body {
     width: 20%;
     background-color: black;
     color: white;
+<<<<<<< HEAD
+    height: 80px;
+    font-size: 30px;
+=======
+    transition: background 1s;
+>>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #custom {
@@ -72,12 +104,13 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-    
+    height: 80px;
+    font-size: 30px;
+    align-items: center;
 }
 
 #lists {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     font-family: Poppins;
     margin-top: 50px;
@@ -95,9 +128,10 @@ body {
     padding: 10px;
     border-radius: 20px;
     width: 30%;
-    height: 550px;
+    height: 750px;
     background-color: black;
     color: white;
+    transition: background 1s;
 }
 
 #showlist {
@@ -108,9 +142,10 @@ body {
     padding: 10px;
     border-radius: 20px;
     width: 30%;
-    height: 550px;
+    height: 750px;
     background-color: black;
     color: white;
+    transition: background 1s;
 }
 
 #mylist {
@@ -121,7 +156,7 @@ body {
     padding: 10px;
     border-radius: 20px;
     width: 30%;
-    height: 550px;
+    height: 750px;
     background-color: black;
     color: white;
 }
@@ -140,4 +175,20 @@ body {
 
 #shows:active {
     background-color: black;
+}
+
+#movielist:active{
+    background-color: black;
+}
+
+#movielist:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+#showlist:active{
+    background-color: black;
+}
+
+#showlist:hover{
+    background-color: rgb(85, 85, 85);
 }
