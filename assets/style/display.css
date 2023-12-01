@@ -49,6 +49,7 @@ body {
     margin: 30px;
     padding: 20px;
     transition: 1s;
+    transition: background 1s, transform 1s;
 }
 
 #back-main {
@@ -59,6 +60,7 @@ body {
     margin: 30px;
     padding: 20px;
     transition: 1s;
+    transition: background 1s, transform 1s;
 }
 
 #title-two {
@@ -148,6 +150,7 @@ body {
 
 #save-later:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 
 }
 
@@ -157,6 +160,7 @@ body {
 
 #back-main:hover {
     background-color: rgb(85, 85, 85);
+    transform: translateY(-10px);
 }
 
 #back-main:active {
