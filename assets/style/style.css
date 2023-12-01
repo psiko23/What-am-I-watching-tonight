@@ -44,8 +44,8 @@ body {
     width: 100%;
     font-size: 35px;
     margin-top: 0px;
-    
 }
+
 #listheads {
     display: flex;
     align-items: center;
@@ -67,9 +67,9 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-    transition: background 1s;
     height: 80px;
     font-size: 30px;
+    transition: background 1s;
 }
 
 #shows {
@@ -82,9 +82,9 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-    transition: background 1s;
     height: 80px;
     font-size: 30px;
+    transition: background 1s;
 }
 
 #custom {
