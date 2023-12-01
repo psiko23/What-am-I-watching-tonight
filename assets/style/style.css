@@ -67,8 +67,13 @@ body {
     width: 20%;
     background-color: black;
     color: white;
+<<<<<<< HEAD
+    height: 80px;
+    font-size: 30px;
+=======
     transition: background 1s;
     
+>>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #shows {
@@ -81,7 +86,12 @@ body {
     width: 20%;
     background-color: black;
     color: white;
+<<<<<<< HEAD
+    height: 80px;
+    font-size: 30px;
+=======
     transition: background 1s;
+>>>>>>> 254740be1be112ed097b73e2f02695d649724b64
 }
 
 #custom {
@@ -94,12 +104,13 @@ body {
     width: 20%;
     background-color: black;
     color: white;
-    
+    height: 80px;
+    font-size: 30px;
+    align-items: center;
 }
 
 #lists {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     font-family: Poppins;
     margin-top: 50px;
