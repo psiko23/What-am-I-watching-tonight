@@ -393,23 +393,18 @@ const testdata = [
         "vote_count": 3618
     }
 ];
-let genreUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
 let showUrl = 'https://api.themoviedb.org/3/discover/tv?';
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
 let movietitles = document.getElementById('movietitles');
-movietitles.setAttribute('class','p-1')
-
+let dropdownMenu = document.getElementsByClassName('showslist');
+movietitles.setAttribute('class','p-1');
 let showTitles = document.getElementById('showtitles');
-showTitles.setAttribute('class','p-1')
-// let randmovietitles =[];
-// let actors = [];
+showTitles.setAttribute('class','p-1');
 
-
-
+let movieListData;
 function getNames() {
-    let randmovietitles =[];
     let pageNum= Math.floor(Math.random() * 500);
     const options = {
         method: 'GET',
@@ -423,21 +418,27 @@ function getNames() {
       .then(function(response){
          return response.json();
       })
-      .then(function(movieNames){
-        movieNames.results.forEach(el => randmovietitles.push(el));
-        console.log('randmovietitles ',randmovietitles);
+      .then(function(data){
+        movieListData = data;
+        console.log(movieListData);
+      })
+      .then(displayMovieList);
+}
 
+function displayMovieList() {
     for (let i=0;i<10;i++) {
         let randMovieEl = document.createElement('li');
-        randMovieEl.setAttribute('class','p-1 block')
-        randMovieEl.innerHTML = '<a href="./display.html">'+ randmovietitles[i].title+ '</a><hr>';
+        let movieId = movieListData.results[i].id;
+        randMovieEl.setAttribute('class','p-1 block');
+        randMovieEl.innerHTML = '<a href="./display.html">'+ movieListData.results[i].title+ '</a><hr>';
+        randMovieEl.addEventListener('click',function() {
+            console.log(movieId.target);
+            getMovieById(movieId)
+        })
         console.log('movieTitles', randMovieEl.textContent);
         movietitles.append(randMovieEl);
     }
-      })
-
 }
-
 
 let movieGenres =[];
 function getGenre(){
@@ -449,28 +450,22 @@ function getGenre(){
         }
       };
       
-      fetch(genreUrl, options)
+      fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
         .then(function(response) {
             return response.json();
         })
-        .then(function(response) {
-            response.genres.forEach(el => movieGenres.push(el));
-            // console.log('genreData',response);
+        .then(function(data) {
+            movieGenres = data;
+            console.log(movieGenres);
         })
-        .catch(err => console.error(err));
-        console.log('genreData ', movieGenres);
-        return movieGenres;
+        .then()
 }
 
-console.log(movieGenres);
 getGenre();
-// genreBtn.addEventListener('click',function() {
-//     getGenre();
-// })
 
-
-movieBtn.addEventListener('click',function(){
+movieBtn.addEventListener('click',function(event){
     getNames();
+    event.stopPropagation();
 })
 
 function getShow() {
@@ -508,8 +503,8 @@ showBtn.addEventListener('click',function (){
 })
 
 let movieData;
-function getMovieById(chosenMovie) {
-    // let movieId = chosenMovie.id;
+
+function getMovieById() {
     let reqUrl = 'https://api.themoviedb.org/3/movie/8871?language=en-US';
     const options = {
         method: 'GET',
@@ -529,6 +524,3 @@ function getMovieById(chosenMovie) {
 
 }
 
-getMovieById()
-    .then(movieData => console.log(movieData))
-    .catch(err => console.log(err));
