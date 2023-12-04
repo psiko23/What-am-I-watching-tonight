@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb1bad966a78731b6798aeabaffd43d41c731a4e
 const testdata = [
     {
         "adult": false,
@@ -518,6 +521,7 @@ function displayShowList() {
 showBtn.addEventListener('click',function (){
     getShowList();
 })
+<<<<<<< HEAD
 
 let genreOptions =[];
 function getGenre(){
@@ -612,3 +616,5 @@ function getMovieById() {
 
 }
 
+=======
+>>>>>>> fb1bad966a78731b6798aeabaffd43d41c731a4e
