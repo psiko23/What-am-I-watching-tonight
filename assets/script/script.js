@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> fb1bad966a78731b6798aeabaffd43d41c731a4e
 const testdata = [
     {
         "adult": false,
@@ -396,48 +393,52 @@ const testdata = [
         "vote_count": 3618
     }
 ];
-let movieContainer = document.getElementById('movielist');
 let movieGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
+let showTitles = document.getElementById('showtitles');
+let movieTitles = document.getElementById('movietitles');
 
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
 
-let movieListData;
-function getMovieList() {
-    let pageNum= Math.floor(Math.random() * 500);
-    let reqUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc';
-    const options = {
+let genreMovies;
+function getMovieByGenre(genre) {
+    let pageNum = Math.floor(Math.random() * 500);
+    let reqUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=' + pageNum + '&sort_by=popularity.desc&with_genres=' + genre;
+    let options = {
         method: 'GET',
-          headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
-          }
-      };
-      
-      fetch(reqUrl, options)
-      .then(function(response){
-         return response.json();
-      })
-      .then(function(data){
-        movieListData = data;
-        // console.log(movieListData);
-      })
-      .then(displayMovieList);
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
+        }
+    }
+
+    fetch(reqUrl, options)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        genreMovies = data;
+        // console.log(genreMovies);
+        displayMovieList();
+    })
+    
 }
 
 function displayMovieList() {
-    let movietitles = document.getElementById('movietitles');
-    movietitles.setAttribute('class','scroll')
-    for (let i = 0;i < movieListData.results.length; i++) {
+    let movieId;
+    movieTitles.innerHTML = '';
+    movieTitles.setAttribute('class','scroll')
+    console.log(genreMovies);
+    for (let i = 0;i < genreMovies.results.length; i++) {
         let hr = document.createElement('hr');
         let randMovieEl = document.createElement('li');
-        let movieLink = document.createElement('a');
-        let movieId = movieListData.results[i].id;
+        let movieLink = document.createElement('button');
+        movieId = genreMovies.results[i].id;
 
         randMovieEl.setAttribute('class','p-1 block');
-        movieLink.setAttribute('href','./display.html');
+        movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
         movieLink.setAttribute('style', 'color: white; transition: color 0.3s;');
         movieLink.addEventListener('mouseover',function(){
             movieLink.style.color = 'red';
@@ -445,27 +446,23 @@ function displayMovieList() {
         movieLink.addEventListener('mouseout', function(){
             movieLink.style.color = 'white';
         })
-        movieLink.textContent = movieListData.results[i].title;
+        movieLink.textContent = genreMovies.results[i].title;
 
-        randMovieEl.addEventListener('click',function() {
-            console.log(movieId.target);
-            getMovieById(movieId)
+        movieLink.addEventListener('click', function(){
+           getMovieById(movieId);
         })
+
         console.log('movieTitles', movieLink.textContent);
         randMovieEl.append(movieLink,hr);
-        movietitles.append(randMovieEl);
+        movieTitles.append(randMovieEl);
     }
-    
+
 }
 
-movieBtn.addEventListener('click',function(){
-    getMovieList();
-})
+let movieDetails;
 
-let showListData;
-function getShowList() {
-    let pageNum = Math.floor(Math.random() * 500);
-    let reqUrl = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc'
+function getMovieById(movieId) { 
+    let reqUrl = 'https://api.themoviedb.org/3/movie/'+ movieId +'?language=en-US';
     const options = {
         method: 'GET',
         headers: {
@@ -474,58 +471,26 @@ function getShowList() {
         }
       };
       
-      fetch(reqUrl, options)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data){
-            showListData = data;
-            console.log(showListData);
-        })
-        .then(displayShowList);
+    fetch(reqUrl, options)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        movieDetails = data;
+        saveMovieDetails(movieDetails);
+    })
+
 }
 
+function saveMovieDetails() {
+    localStorage.setItem('Selected Movie', JSON.stringify(movieDetails));
+}
 
-// fix display show list!!
-
-function displayShowList() {
-    let showTitles = document.getElementById('showtitles');
-    showTitles.setAttribute('class','scroll');
+let genreShows;
+function getShowByGenre(genre) {
     
-    for (let i = 0; i < showListData.results.length; i++) {
-        let hr = document.createElement('hr');
-        let randShowEl = document.createElement('li');
-        let showLink = document.createElement('a');
-        let showId = showListData.results[i].id;
-
-        randShowEl.setAttribute('class','p-1 block');
-        showLink.setAttribute('href','./display.html');
-        showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
-        showLink.addEventListener('mouseover',function(){
-            showLink.style.color = 'red';
-        });
-        showLink.addEventListener('mouseout', function(){
-            showLink.style.color = 'white';
-        });
-        showLink.textContent = showListData.results[i].name;
-
-        randShowEl.addEventListener('click',function() {
-            getMovieById(showId)
-        });
-        console.log('showTitles', showLink.textContent);
-        randShowEl.append(showLink,hr);
-        showTitles.append(randShowEl);
-    }
-}
-
-showBtn.addEventListener('click',function (){
-    getShowList();
-})
-<<<<<<< HEAD
-
-let genreOptions =[];
-function getGenre(){
-    let reqUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
+    let pageNum = Math.floor(Math.random() * 500);
+    let reqUrl = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc&with_genres='+ genre;
     const options = {
         method: 'GET',
         headers: {
@@ -539,12 +504,68 @@ function getGenre(){
             return response.json();
         })
         .then(function(data) {
-            genreOptions = data;
-            // console.log(genreOptions);
+            genreShows = data;
+            console.log(genreShows);
         })
+        .then(displayShowList);
 }
-getGenre();
 
+function displayShowList() {
+    showTitles.innerHTML = '';
+    showTitles.setAttribute('class','scroll');
+    let showId;
+    
+    for (let i = 0; i < genreShows.results.length; i++) {
+        let hr = document.createElement('hr');
+        let randShowEl = document.createElement('li');
+        let showLink = document.createElement('button');
+        showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
+        showId = genreShows.results[i].id;
+
+        randShowEl.setAttribute('class','p-1 block');
+        showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+
+        showLink.addEventListener('mouseover',function(){
+            showLink.style.color = 'red';
+        });
+        showLink.addEventListener('mouseout', function(){
+            showLink.style.color = 'white';
+        });
+        showLink.textContent = genreShows.results[i].name;
+
+        showLink.addEventListener('click', function(){
+            getShowById(showId);
+        })
+        // console.log('showTitles', showLink.textContent);
+        randShowEl.append(showLink,hr);
+        showTitles.append(randShowEl);
+
+    }
+
+}
+let showDetails;
+function getShowById(showId) {
+    let reqUrl = 'https://api.themoviedb.org/3/tv/'+ showId +'?language=en-US';
+    const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
+        }
+      };
+    fetch(reqUrl, options)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        showDetails = data;
+        saveShowDetails(showDetails);
+    })
+}
+
+function saveShowDetails() {
+    localStorage.setItem('Selected Show', JSON.stringify(showDetails));
+}
 
 function genreLinks() {
     let movieGenreLinks = document.querySelectorAll('#dropdown-m .movieslist li a');
@@ -562,59 +583,11 @@ function genreLinks() {
         link.addEventListener('click', function (event) {
             event.preventDefault();
             let genre = link.id;
-            getMovieByGenre(genre);
+            getShowByGenre(genre);
         })
     })
 };
 
-function getMovieByGenre(genre) {
-    let pageNum = Math.floor(Math.random() * 500);
-    let reqUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=' + pageNum + '&sort_by=popularity.desc&with_genres=' + genre;
-    let options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
-        }
-    }
-
-    fetch(reqUrl, options)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-    })
-    .catch(function (error) {
-        console.error('Error fetching movies by genre:', error);
-    });
-}
 
 genreLinks();
 
-
-
-let movieData;
-
-function getMovieById() {
-    let reqUrl = 'https://api.themoviedb.org/3/movie/8871?language=en-US';
-    const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmIxNjJjYjdhNzJiMTQ3YzMwZWJkNGQ1ZTMwZjk5NCIsInN1YiI6IjY1NjU1OWJlYThiMmNhMDBjOTg2MDMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZTs5QJnobmaJOzvPBH6vTdoLBBmBF9gcsN_8fyRzYWk'
-        }
-      };
-      
-      return fetch(reqUrl, options)
-        .then(response => response.json())
-        .then(data => {
-            movieData = data;
-            return movieData;
-        })
-        .catch(err => console.log(err));
-
-}
-
-=======
->>>>>>> fb1bad966a78731b6798aeabaffd43d41c731a4e
