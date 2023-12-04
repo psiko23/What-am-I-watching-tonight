@@ -197,3 +197,17 @@ body {
     background-color: rgb(85, 85, 85);
     transform: translateY(-10px);
 }
+
+.scroll{
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgray;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: lightgray;
+    }
+}
