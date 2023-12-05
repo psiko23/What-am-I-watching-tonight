@@ -425,9 +425,8 @@ function getMovieByGenre(genre) {
     })
     
 }
-
+let movieId;
 function displayMovieList() {
-    let movieId;
     movieTitles.innerHTML = '';
     movieTitles.setAttribute('class','scroll')
     console.log(genreMovies);
@@ -435,7 +434,8 @@ function displayMovieList() {
         let hr = document.createElement('hr');
         let randMovieEl = document.createElement('li');
         let movieLink = document.createElement('button');
-        movieId = genreMovies.results[i].id;
+        let currentMovieId = genreMovies.results[i].id;
+        console.log(currentMovieId);
 
         randMovieEl.setAttribute('class','p-1 block');
         movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
@@ -449,7 +449,7 @@ function displayMovieList() {
         movieLink.textContent = genreMovies.results[i].title;
 
         movieLink.addEventListener('click', function(){
-           getMovieById(movieId);
+           getMovieById(currentMovieId);
         })
 
         console.log('movieTitles', movieLink.textContent);
@@ -460,7 +460,6 @@ function displayMovieList() {
 }
 
 let movieDetails;
-
 function getMovieById(movieId) { 
     let reqUrl = 'https://api.themoviedb.org/3/movie/'+ movieId +'?language=en-US';
     const options = {
@@ -478,6 +477,9 @@ function getMovieById(movieId) {
     .then(function(data) {
         movieDetails = data;
         saveMovieDetails(movieDetails);
+    })
+    .then(function() {
+        window.location.href = './display.html';
     })
 
 }
@@ -513,14 +515,13 @@ function getShowByGenre(genre) {
 function displayShowList() {
     showTitles.innerHTML = '';
     showTitles.setAttribute('class','scroll');
-    let showId;
     
     for (let i = 0; i < genreShows.results.length; i++) {
         let hr = document.createElement('hr');
         let randShowEl = document.createElement('li');
         let showLink = document.createElement('button');
         showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
-        showId = genreShows.results[i].id;
+        let currentShowId = genreShows.results[i].id;
 
         randShowEl.setAttribute('class','p-1 block');
         showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
@@ -534,7 +535,7 @@ function displayShowList() {
         showLink.textContent = genreShows.results[i].name;
 
         showLink.addEventListener('click', function(){
-            getShowById(showId);
+            getShowById(currentShowId);
         })
         // console.log('showTitles', showLink.textContent);
         randShowEl.append(showLink,hr);
@@ -561,11 +562,15 @@ function getShowById(showId) {
         showDetails = data;
         saveShowDetails(showDetails);
     })
+    .then(function() {
+        window.location.href = './display.html';
+    })
 }
 
 function saveShowDetails() {
     localStorage.setItem('Selected Show', JSON.stringify(showDetails));
 }
+
 
 function genreLinks() {
     let movieGenreLinks = document.querySelectorAll('#dropdown-m .movieslist li a');
@@ -587,7 +592,6 @@ function genreLinks() {
         })
     })
 };
-
 
 genreLinks();
 

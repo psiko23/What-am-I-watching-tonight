@@ -22,3 +22,54 @@
 //response.cast[0/1]
 
 //blanket fetch request for where to watch = fetch ('https://api.themoviedb.org/3/(movie or tv)/[.id]/watch/providers', options)
+
+let storedMovieDetails = localStorage.getItem('Selected Movie');
+let storedShowDetails = localStorage.getItem('Selected Show');
+
+let saveBtn = document.getElementById('save-later');
+
+let savedForLater = [];
+
+if (storedMovieDetails) {
+    let movieDetails = JSON.parse(storedMovieDetails);
+    console.log('Stored movie details: ',movieDetails);
+    saveBtn.addEventListener('click',function() {
+        let year = movieDetails.release_date.split('-');
+        year = year[0];
+        let savedMedia = {
+            type: 'movie',
+            id: movieDetails.id,
+            title: movieDetails.title,
+            year: year,
+            rating: movieDetails.vote_average,
+            description: movieDetails.overview,
+            posterpath: movieDetails.poster_path
+        }
+        savedForLater.push(savedMedia);
+        console.log(savedForLater);
+
+        localStorage.setItem('Saved for later: ',JSON.stringify(savedForLater));
+    })
+}
+
+if (storedShowDetails) {
+    let showDetails = JSON.parse(storedShowDetails);
+    console.log('Stored show details: ',showDetails);
+    saveBtn.addEventListener('click',function() {
+        let year = showDetails.first_air_date.split('-');
+        year = year[0];
+        let savedMedia = {
+            type: 'show',
+            id: showDetails.id,
+            title: showDetails.title,
+            year: year,
+            rating: showDetails.vote_average,
+            description: showDetails.overview,
+            posterpath: showDetails.poster_path
+        }
+        savedForLater.push(savedMedia);
+        console.log(savedForLater);
+    })
+    localStorage.setItem('Saved for later: ', JSON.stringify(savedForLater));
+}
+
