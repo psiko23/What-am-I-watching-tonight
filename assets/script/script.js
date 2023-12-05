@@ -402,6 +402,7 @@ let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
 
+// gets list of 20 movie with given genre
 let genreMovies;
 function getMovieByGenre(genre) {
     let pageNum = Math.floor(Math.random() * 500);
@@ -425,6 +426,8 @@ function getMovieByGenre(genre) {
     })
     
 }
+
+// displays list of 20 movie names
 let movieId;
 function displayMovieList() {
     movieTitles.innerHTML = '';
@@ -436,17 +439,19 @@ function displayMovieList() {
         let movieLink = document.createElement('button');
         let currentMovieId = genreMovies.results[i].id;
         console.log(currentMovieId);
+        movieLink.textContent = genreMovies.results[i].title;
 
+        // sets styling for the movie buttons 
         randMovieEl.setAttribute('class','p-1 block');
         movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
         movieLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+
         movieLink.addEventListener('mouseover',function(){
             movieLink.style.color = 'red';
         });
         movieLink.addEventListener('mouseout', function(){
             movieLink.style.color = 'white';
         })
-        movieLink.textContent = genreMovies.results[i].title;
 
         movieLink.addEventListener('click', function(){
            getMovieById(currentMovieId);
@@ -459,6 +464,7 @@ function displayMovieList() {
 
 }
 
+// gets the movie selected by id
 let movieDetails;
 function getMovieById(movieId) { 
     let reqUrl = 'https://api.themoviedb.org/3/movie/'+ movieId +'?language=en-US';
@@ -484,10 +490,12 @@ function getMovieById(movieId) {
 
 }
 
+// saves the data to local storage
 function saveMovieDetails() {
     localStorage.setItem('Selected Movie', JSON.stringify(movieDetails));
 }
 
+// gets list of 20 show with given genre
 let genreShows;
 function getShowByGenre(genre) {
     
@@ -512,6 +520,7 @@ function getShowByGenre(genre) {
         .then(displayShowList);
 }
 
+// displays list of 20 show names
 function displayShowList() {
     showTitles.innerHTML = '';
     showTitles.setAttribute('class','scroll');
@@ -520,11 +529,12 @@ function displayShowList() {
         let hr = document.createElement('hr');
         let randShowEl = document.createElement('li');
         let showLink = document.createElement('button');
-        showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
         let currentShowId = genreShows.results[i].id;
-
+        // sets styling for show buttons
+        showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
         randShowEl.setAttribute('class','p-1 block');
         showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+        showLink.textContent = genreShows.results[i].name;
 
         showLink.addEventListener('mouseover',function(){
             showLink.style.color = 'red';
@@ -532,7 +542,6 @@ function displayShowList() {
         showLink.addEventListener('mouseout', function(){
             showLink.style.color = 'white';
         });
-        showLink.textContent = genreShows.results[i].name;
 
         showLink.addEventListener('click', function(){
             getShowById(currentShowId);
@@ -544,6 +553,8 @@ function displayShowList() {
     }
 
 }
+
+// gets show selected by its id
 let showDetails;
 function getShowById(showId) {
     let reqUrl = 'https://api.themoviedb.org/3/tv/'+ showId +'?language=en-US';
@@ -567,11 +578,12 @@ function getShowById(showId) {
     })
 }
 
+//saves show details to local storage
 function saveShowDetails() {
     localStorage.setItem('Selected Show', JSON.stringify(showDetails));
 }
 
-
+// adds event listeners to the genre buttons
 function genreLinks() {
     let movieGenreLinks = document.querySelectorAll('#dropdown-m .movieslist li a');
     let showGenreLinks = document.querySelectorAll('#dropdown-s .showslist li a');
@@ -593,6 +605,3 @@ function genreLinks() {
     })
 };
 genreLinks();
-
-let storedMedia = localStorage.getItem('Saved for later');
-let myList = JSON.parse(storedMedia);
