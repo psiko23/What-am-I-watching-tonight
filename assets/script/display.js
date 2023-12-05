@@ -26,14 +26,14 @@
 let storedMovieDetails = localStorage.getItem('Selected Movie');
 let storedShowDetails = localStorage.getItem('Selected Show');
 
-let saveBtn = document.getElementById('save-later');
+let saveForLaterBtn = document.getElementById('save-later');
 
 let savedForLater = [];
 
 if (storedMovieDetails) {
     let movieDetails = JSON.parse(storedMovieDetails);
     console.log('Stored movie details: ',movieDetails);
-    saveBtn.addEventListener('click',function() {
+    saveForLaterBtn.addEventListener('click',function() {
         let year = movieDetails.release_date.split('-');
         year = year[0];
         let savedMovie = {
@@ -53,15 +53,16 @@ if (storedMovieDetails) {
 }
 
 if (storedShowDetails) {
+    let storedShowDetails = localStorage.getItem('Selected Show');
     let showDetails = JSON.parse(storedShowDetails);
     console.log('Stored show details: ',showDetails);
-    saveBtn.addEventListener('click',function() {
+    saveForLaterBtn.addEventListener('click',function() {
         let year = showDetails.first_air_date.split('-');
         year = year[0];
         let savedShow = {
             type: 'show',
             id: showDetails.id,
-            title: showDetails.title,
+            title: showDetails.name,
             year: year,
             rating: showDetails.vote_average,
             description: showDetails.overview,
@@ -72,4 +73,3 @@ if (storedShowDetails) {
     })
     localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
 }
-
