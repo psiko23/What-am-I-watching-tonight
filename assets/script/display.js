@@ -35,6 +35,16 @@ let description = document.getElementById('feature-description');
 let topCast = document.getElementById('feature-cast-crew');
 let trailer = document.getElementById('feature-trailer');
 
+let movieInfo = JSON.parse(storedMovieDetails);
+
+let year = movieInfo.release_date.split('-');
+    year = year[0];
+nameYear.textContent = movieInfo.title + ' : ' + year;
+console.log(movieInfo.title);
+whereToWatch.innerHtml = + 'Placeholder';
+rating.textContent = movieInfo.vote_average;
+
+
 let savedForLater = [];
 
 if (storedMovieDetails) {
@@ -78,8 +88,4 @@ if (storedShowDetails) {
         console.log(savedForLater);
     })
     localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
-}
-
-function fillMovieInfo (){
-    nameYear.innerHTML = '';
 }
