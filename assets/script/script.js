@@ -592,6 +592,14 @@ function genreLinks() {
         })
     })
 };
-
 genreLinks();
 
+let storedMedia = localStorage.getItem('Saved for later');
+
+function getMyList() {
+    let myList = JSON.parse(storedMedia);
+    console.log('myList: ',myList);
+
+}
+
+getMyList();

@@ -43,7 +43,7 @@ if (storedMovieDetails) {
     saveBtn.addEventListener('click',function() {
         let year = movieDetails.release_date.split('-');
         year = year[0];
-        let savedMedia = {
+        let savedMovie = {
             type: 'movie',
             id: movieDetails.id,
             title: movieDetails.title,
@@ -52,10 +52,10 @@ if (storedMovieDetails) {
             description: movieDetails.overview,
             posterpath: movieDetails.poster_path
         }
-        savedForLater.push(savedMedia);
+        savedForLater.push(savedMovie);
         console.log(savedForLater);
 
-        localStorage.setItem('Saved for later: ',JSON.stringify(savedForLater));
+        localStorage.setItem('Saved for later',JSON.stringify(savedForLater));
     })
 }
 
@@ -65,7 +65,7 @@ if (storedShowDetails) {
     saveBtn.addEventListener('click',function() {
         let year = showDetails.first_air_date.split('-');
         year = year[0];
-        let savedMedia = {
+        let savedShow = {
             type: 'show',
             id: showDetails.id,
             title: showDetails.title,
@@ -74,10 +74,10 @@ if (storedShowDetails) {
             description: showDetails.overview,
             posterpath: showDetails.poster_path
         }
-        savedForLater.push(savedMedia);
+        savedForLater.push(savedShow);
         console.log(savedForLater);
     })
-    localStorage.setItem('Saved for later: ', JSON.stringify(savedForLater));
+    localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
 }
 
 function fillMovieInfo (){
