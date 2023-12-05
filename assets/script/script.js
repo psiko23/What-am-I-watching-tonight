@@ -393,6 +393,7 @@ const testdata = [
         "vote_count": 3618
     }
 ];
+
 let movieGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showTitles = document.getElementById('showtitles');
@@ -421,7 +422,7 @@ function getMovieByGenre(genre) {
     })
     .then(function (data) {
         genreMovies = data;
-        // console.log(genreMovies);
+    // console.log(genreMovies);
         displayMovieList();
     })
     
