@@ -34,15 +34,21 @@ let whereToWatch = document.getElementById('feature-location');
 let description = document.getElementById('feature-description');
 let topCast = document.getElementById('feature-cast-crew');
 let trailer = document.getElementById('feature-trailer');
+let placeHolderTrailer = document.createElement('img')
+placeHolderTrailer.setAttribute('class', 'placeHolderPoster');
 
 let movieInfo = JSON.parse(storedMovieDetails);
 
 let year = movieInfo.release_date.split('-');
     year = year[0];
 nameYear.textContent = movieInfo.title + ' : ' + year;
-console.log(movieInfo.title);
 whereToWatch.innerHtml = + 'Placeholder';
-rating.textContent = movieInfo.vote_average;
+rating.textContent = "This Movie has a rating of " + movieInfo.vote_average;
+description.textContent = "Description Summary: " + movieInfo.overview;
+let imgSrc = "https://image.tmdb.org/t/p/original/" + movieInfo.poster_path;
+placeHolderTrailer.setAttribute('src', imgSrc);
+console.log(movieInfo.poster_path);
+trailer.appendChild(placeHolderTrailer);
 
 
 let savedForLater = [];
