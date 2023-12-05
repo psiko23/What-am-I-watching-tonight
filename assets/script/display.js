@@ -28,6 +28,23 @@ let storedShowDetails = localStorage.getItem('Selected Show');
 
 let saveForLaterBtn = document.getElementById('save-later');
 
+let nameYear = document.getElementById('feature-name');
+let rating = document.getElementById('feature-ratings');
+let whereToWatch = document.getElementById('feature-location');
+let description = document.getElementById('feature-description');
+let topCast = document.getElementById('feature-cast-crew');
+let trailer = document.getElementById('feature-trailer');
+
+let movieInfo = JSON.parse(storedMovieDetails);
+
+let year = movieInfo.release_date.split('-');
+    year = year[0];
+nameYear.textContent = movieInfo.title + ' : ' + year;
+console.log(movieInfo.title);
+whereToWatch.innerHtml = + 'Placeholder';
+rating.textContent = movieInfo.vote_average;
+
+
 let savedForLater = [];
 
 if (storedMovieDetails) {
@@ -73,3 +90,4 @@ if (storedShowDetails) {
     })
     localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
 }
+
