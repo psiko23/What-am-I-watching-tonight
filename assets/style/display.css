@@ -166,3 +166,8 @@ body {
 #back-main:active {
     background-color: black;
 }
+
+.placeHolderPoster {
+    height: 550px;
+    width: 1100px;
+}
