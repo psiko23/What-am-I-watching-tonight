@@ -2,6 +2,7 @@ let movieGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showTitles = document.getElementById('showtitles');
 let movieTitles = document.getElementById('movietitles');
+let myListEl = document.getElementById('listTitles');
 
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
@@ -225,3 +226,62 @@ function genreLinks() {
     })
 };
 genreLinks();
+
+function displayMyList() {
+    mediaList = JSON.parse(localStorage.getItem('myList'));
+    console.log(mediaList);
+    for (let i = 0; i < mediaList.length;i++) {
+        if (mediaList[i].episode_run_time) {
+            let hr = document.createElement('hr');
+            let randShowEl = document.createElement('li');
+            let showLink = document.createElement('button');
+            let listShowId = mediaList[i].id;
+            showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
+            randShowEl.setAttribute('class','p-1 block');
+            showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+            showLink.textContent = mediaList[i].name;
+
+            showLink.addEventListener('mouseover',function(){
+                showLink.style.color = 'red';
+            });
+            showLink.addEventListener('mouseout', function(){
+                showLink.style.color = 'white';
+            });
+
+            showLink.addEventListener('click', function(){
+                clearStorage();
+                getShowById(listShowId);
+            })
+            randShowEl.append(showLink,hr);
+            myListEl.append(randShowEl);
+        } else {
+            let hr = document.createElement('hr');
+            let listMovieEl = document.createElement('li');
+            let movieLink = document.createElement('button');
+            let currentMovieId = mediaList[i].id;
+            console.log(currentMovieId);
+            movieLink.textContent = mediaList[i].title;
+            listMovieEl.setAttribute('class','p-1 block');
+            movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
+            movieLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+
+            movieLink.addEventListener('mouseover',function(){
+                movieLink.style.color = 'red';
+            });
+            movieLink.addEventListener('mouseout', function(){
+                movieLink.style.color = 'white';
+            })
+
+            movieLink.addEventListener('click', function(){
+                clearStorage();
+                getMovieById(currentMovieId);
+            })
+
+            console.log('movieTitles', movieLink.textContent);
+            listMovieEl.append(movieLink,hr);
+            myListEl.append(listMovieEl);
+        }
+    }
+}
+
+displayMyList();
