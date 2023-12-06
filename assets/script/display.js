@@ -27,6 +27,7 @@ let storedMovieDetails = localStorage.getItem('Selected Movie');
 let storedShowDetails = localStorage.getItem('Selected Show');
 
 let saveForLaterBtn = document.getElementById('save-later');
+let body = document.body;
 
 let nameYear = document.getElementById('feature-name');
 let rating = document.getElementById('feature-ratings');
@@ -34,7 +35,13 @@ let whereToWatch = document.getElementById('feature-location');
 let description = document.getElementById('feature-description');
 let topCast = document.getElementById('feature-cast-crew');
 let trailer = document.getElementById('feature-trailer');
-let placeHolderTrailer = document.createElement('img')
+let placeHolderTrailer = document.createElement('img');
+let backBtnEl = document.getElementById('back-main');
+backBtnEl.addEventListener('click',function(){
+    window.location.href = './index.html';
+})
+
+
 placeHolderTrailer.setAttribute('class', 'placeHolderPoster');
 
 let movieInfo = JSON.parse(storedMovieDetails);
