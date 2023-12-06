@@ -38,16 +38,28 @@ let placeHolderTrailer = document.createElement('img')
 placeHolderTrailer.setAttribute('class', 'placeHolderPoster');
 
 let movieInfo = JSON.parse(storedMovieDetails);
+let ShowInfo = JSON.parse(storedShowDetails);
 
-let year = movieInfo.release_date.split('-');
-    year = year[0];
-nameYear.textContent = movieInfo.title + ' : ' + year;
+// let yearM = movieInfo.release_date.split('-');
+//     yearM = yearM[0];
+// nameYear.textContent = movieInfo.title + ' : ' + yearM;
+// whereToWatch.innerHtml = + 'Placeholder';
+// rating.textContent = "This Movie has a rating of " + movieInfo.vote_average;
+// description.textContent = "Description Summary: " + movieInfo.overview;
+// let imgSrcM = "https://image.tmdb.org/t/p/original/" + movieInfo.poster_path;
+// placeHolderTrailer.setAttribute('src', imgSrc);
+// console.log(movieInfo.poster_path);
+// trailer.appendChild(placeHolderTrailer);
+
+let yearS = ShowInfo.first_air_date.split('-');
+    yearS = yearS[0];
+nameYear.textContent = ShowInfo.name + ' : ' + yearS;
 whereToWatch.innerHtml = + 'Placeholder';
-rating.textContent = "This Movie has a rating of " + movieInfo.vote_average;
-description.textContent = "Description Summary: " + movieInfo.overview;
-let imgSrc = "https://image.tmdb.org/t/p/original/" + movieInfo.poster_path;
-placeHolderTrailer.setAttribute('src', imgSrc);
-console.log(movieInfo.poster_path);
+rating.textContent = "This Show has a rating of " + ShowInfo.vote_average;
+description.textContent = "Description Summary: " + ShowInfo.overview;
+let imgSrcS = "https://image.tmdb.org/t/p/original/" + ShowInfo.poster_path;
+placeHolderTrailer.setAttribute('src', imgSrcS);
+console.log(ShowInfo.poster_path);
 trailer.appendChild(placeHolderTrailer);
 
 
