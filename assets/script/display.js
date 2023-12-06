@@ -27,7 +27,6 @@ let storedMovieDetails = localStorage.getItem('Selected Movie');
 let storedShowDetails = localStorage.getItem('Selected Show');
 
 let saveForLaterBtn = document.getElementById('save-later');
-let body = document.body;
 
 let nameYear = document.getElementById('feature-name');
 let rating = document.getElementById('feature-ratings');
@@ -41,83 +40,126 @@ backBtnEl.addEventListener('click',function(){
     window.location.href = './index.html';
 })
 
+if (storedMovieDetails) {
+    let movieDetails = JSON.parse(storedMovieDetails);
+    console.log('Stored movie details: ', movieDetails);
+    displayMovieDetails(movieDetails);
+    saveForLaterBtn.addEventListener('click', function() {
+        // saveForLater(movieDetails);
+    })
+}
+
+if (storedShowDetails) {
+    let showDetails = JSON.parse(storedShowDetails);
+    console.log('Stored show details: ', showDetails);
+    displayShowDetails(showDetails);
+    saveForLaterBtn.addEventListener('click', function() {
+        // saveForLater(showDetails);
+    })
+}
+
+function displayMovieDetails(movieDetails) {
+    let yearM = movieDetails.release_date.split('-');
+        yearM = yearM[0];
+    nameYear.innerHTML = movieDetails.title + ' : ' + yearM;
+    whereToWatch.innerHtml = + 'Placeholder';
+    rating.innerHTML = "This Movie has a rating of " + movieDetails.vote_average;
+    description.innerHTML = "Description Summary: " + movieDetails.overview;
+    let imgSrcM = "https://image.tmdb.org/t/p/original/" + movieDetails.poster_path;
+    placeHolderTrailer.setAttribute('src', imgSrcM);
+    console.log(movieDetails.poster_path);
+    trailer.appendChild(placeHolderTrailer);
+}
+
+function displayShowDetails(showDetails) {
+    let yearS = showDetails.first_air_date.split('-');
+        yearS = yearS[0];
+    nameYear.innerHTML = showDetails.name + ' : ' + yearS;
+    whereToWatch.innerHTML = 'Placeholder';
+    rating.innerHTML = "This Show has a rating of " + showDetails.vote_average;
+    description.innerHTML = "Description Summary: " + showDetails.overview;
+    let imgSrcS = "https://image.tmdb.org/t/p/original/" + showDetails.poster_path;
+    placeHolderTrailer.setAttribute('src', imgSrcS);
+    console.log(showDetails.poster_path);
+    trailer.appendChild(placeHolderTrailer);
+}
 
 placeHolderTrailer.setAttribute('class', 'placeHolderPoster');
 
-let movieInfo = JSON.parse(storedMovieDetails);
-let ShowInfo = JSON.parse(storedShowDetails);
+// let movieInfo = JSON.parse(storedMovieDetails);
+// let ShowInfo = JSON.parse(storedShowDetails);
 
-if (storedMovieDetails) {
-    let yearM = movieInfo.release_date.split('-');
-        yearM = yearM[0];
-    nameYear.innerHTML = movieInfo.title + ' : ' + yearM;
-    whereToWatch.innerHtml = + 'Placeholder';
-    rating.innerHTML = "This Movie has a rating of " + movieInfo.vote_average;
-    description.innerHTML = "Description Summary: " + movieInfo.overview;
-    let imgSrcM = "https://image.tmdb.org/t/p/original/" + movieInfo.poster_path;
-    placeHolderTrailer.setAttribute('src', imgSrcM);
-    console.log(movieInfo.poster_path);
-    trailer.appendChild(placeHolderTrailer);
-}
+// if (storedMovieDetails) {
+//     let yearM = movieInfo.release_date.split('-');
+//         yearM = yearM[0];
+//     nameYear.innerHTML = movieInfo.title + ' : ' + yearM;
+//     whereToWatch.innerHtml = + 'Placeholder';
+//     rating.innerHTML = "This Movie has a rating of " + movieInfo.vote_average;
+//     description.innerHTML = "Description Summary: " + movieInfo.overview;
+//     let imgSrcM = "https://image.tmdb.org/t/p/original/" + movieInfo.poster_path;
+//     placeHolderTrailer.setAttribute('src', imgSrcM);
+//     console.log(movieInfo.poster_path);
+//     trailer.appendChild(placeHolderTrailer);
+// }
 
-if (storedShowDetails) {
-    let yearS = ShowInfo.first_air_date.split('-');
-        yearS = yearS[0];
-    nameYear.innerHTML = ShowInfo.name + ' : ' + yearS;
-    whereToWatch.innerHtml = + 'Placeholder';
-    rating.innerHTML = "This Show has a rating of " + ShowInfo.vote_average;
-    description.innerHTML = "Description Summary: " + ShowInfo.overview;
-    let imgSrcS = "https://image.tmdb.org/t/p/original/" + ShowInfo.poster_path;
-    placeHolderTrailer.setAttribute('src', imgSrcS);
-    console.log(ShowInfo.poster_path);
-    trailer.appendChild(placeHolderTrailer);
-}
+// if (storedShowDetails) {
+//     let yearS = ShowInfo.first_air_date.split('-');
+//         yearS = yearS[0];
+//     nameYear.innerHTML = ShowInfo.name + ' : ' + yearS;
+//     whereToWatch.innerHTML = 'Placeholder';
+//     rating.innerHTML = "This Show has a rating of " + ShowInfo.vote_average;
+//     description.innerHTML = "Description Summary: " + ShowInfo.overview;
+//     let imgSrcS = "https://image.tmdb.org/t/p/original/" + ShowInfo.poster_path;
+//     placeHolderTrailer.setAttribute('src', imgSrcS);
+//     console.log(ShowInfo.poster_path);
+//     trailer.appendChild(placeHolderTrailer);
+// }
 
 
-let savedForLater = [];
+// let savedForLater = [];
 
-if (storedMovieDetails) {
-    let movieDetails = JSON.parse(storedMovieDetails);
-    console.log('Stored movie details: ',movieDetails);
-    saveForLaterBtn.addEventListener('click',function() {
-        let year = movieDetails.release_date.split('-');
-        year = year[0];
-        let savedMovie = {
-            type: 'movie',
-            id: movieDetails.id,
-            title: movieDetails.title,
-            year: year,
-            rating: movieDetails.vote_average,
-            description: movieDetails.overview,
-            posterpath: movieDetails.poster_path
-        }
-        savedForLater.push(savedMovie);
-        console.log(savedForLater);
+// if (storedMovieDetails) {
+//     let movieDetails = JSON.parse(storedMovieDetails);
+//     console.log('Stored movie details: ',movieDetails);
+//     saveForLaterBtn.addEventListener('click',function() {
+//         let year = movieDetails.release_date.split('-');
+//         year = year[0];
+//         let savedMovie = {
+//             type: 'movie',
+//             id: movieDetails.id,
+//             title: movieDetails.title,
+//             year: year,
+//             rating: movieDetails.vote_average,
+//             description: movieDetails.overview,
+//             posterpath: movieDetails.poster_path
+//         }
+//         savedForLater.push(savedMovie);
+//         console.log(savedForLater);
 
-        localStorage.setItem('Saved for later',JSON.stringify(savedForLater));
-    })
-}
+//         localStorage.setItem('Saved for later',JSON.stringify(savedForLater));
+//     })
+// }
 
-if (storedShowDetails) {
-    let storedShowDetails = localStorage.getItem('Selected Show');
-    let showDetails = JSON.parse(storedShowDetails);
-    console.log('Stored show details: ',showDetails);
-    saveForLaterBtn.addEventListener('click',function() {
-        let year = showDetails.first_air_date.split('-');
-        year = year[0];
-        let savedShow = {
-            type: 'show',
-            id: showDetails.id,
-            title: showDetails.name,
-            year: year,
-            rating: showDetails.vote_average,
-            description: showDetails.overview,
-            posterpath: showDetails.poster_path
-        }
-        savedForLater.push(savedShow);
-        console.log(savedForLater);
-    })
-    localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
-}
+// if (storedShowDetails) {
+//     let storedShowDetails = localStorage.getItem('Selected Show');
+//     let showDetails = JSON.parse(storedShowDetails);
+//     console.log('Stored show details: ',showDetails);
+//     saveForLaterBtn.addEventListener('click',function() {
+//         let year = showDetails.first_air_date.split('-');
+//         year = year[0];
+//         let savedShow = {
+//             type: 'show',
+//             id: showDetails.id,
+//             title: showDetails.name,
+//             year: year,
+//             rating: showDetails.vote_average,
+//             description: showDetails.overview,
+//             posterpath: showDetails.poster_path
+//         }
+//         savedForLater.push(savedShow);
+//         console.log(savedForLater);
+//     })
+//     localStorage.setItem('Saved for later', JSON.stringify(savedForLater));
+// }
 
 

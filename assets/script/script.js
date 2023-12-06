@@ -7,6 +7,19 @@ let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
 let genreBtn = document.querySelector("#genres");
 
+function clearStorage() {
+    let movieMem = JSON.parse(localStorage.getItem('Selected Movie'));
+
+    let showMem = JSON.parse(localStorage.getItem('Selected Show'));
+    if (movieMem) {
+        localStorage.removeItem('Selected Movie');
+    }
+    if (showMem) {
+        localStorage.removeItem('Selected Show');
+    }
+}
+
+
 // gets list of 20 movie with given genre
 let genreMovies;
 function getMovieByGenre(genre) {
@@ -59,8 +72,8 @@ function displayMovieList() {
         })
 
         movieLink.addEventListener('click', function(){
-
-           getMovieById(currentMovieId);
+            clearStorage();
+            getMovieById(currentMovieId);
         })
 
         console.log('movieTitles', movieLink.textContent);
@@ -150,6 +163,7 @@ function displayShowList() {
         });
 
         showLink.addEventListener('click', function(){
+            clearStorage();
             getShowById(currentShowId);
         })
         // console.log('showTitles', showLink.textContent);
