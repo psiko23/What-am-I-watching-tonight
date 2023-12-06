@@ -24,8 +24,8 @@ function clearStorage() {
 // gets list of 20 movie with given genre
 let genreMovies;
 function getMovieByGenre(genre) {
-    let pageNum = Math.floor(Math.random() * 500);
-    let reqUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=' + pageNum + '&sort_by=popularity.desc&with_genres=' + genre;
+    let pageNum = Math.floor(Math.random() * 20);
+    let reqUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=' + pageNum + '&with_genres='+ genre + '&sort_by=popularity.desc';
     let options = {
         method: 'GET',
         headers: {
@@ -118,9 +118,8 @@ function saveMovieDetails() {
 // gets list of 20 show with given genre
 let genreShows;
 function getShowByGenre(genre) {
-    
-    let pageNum = Math.floor(Math.random() * 500);
-    let reqUrl = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page='+ pageNum +'&sort_by=popularity.desc&with_genres='+ genre;
+    let pageNum = Math.floor(Math.random() * 20);
+    let reqUrl = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page='+ pageNum +'&with_genres=' + genre + '&sort_by=popularity.desc';
     const options = {
         method: 'GET',
         headers: {
