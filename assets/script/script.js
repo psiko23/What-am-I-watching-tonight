@@ -3,6 +3,7 @@ let showGenreEl = document.querySelectorAll('#dropdown-m .movieslist li');
 let showTitles = document.getElementById('showtitles');
 let movieTitles = document.getElementById('movietitles');
 let myListEl = document.getElementById('listTitles');
+myListEl.setAttribute('class','scroll');
 
 let movieBtn = document.querySelector("#movies");
 let showBtn = document.querySelector("#shows");
@@ -63,7 +64,7 @@ function displayMovieList() {
         // sets styling for the movie buttons 
         randMovieEl.setAttribute('class','p-1 block');
         movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
-        movieLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+        movieLink.setAttribute('style', 'color: white');
 
         movieLink.addEventListener('mouseover',function(){
             movieLink.style.color = 'red';
@@ -152,7 +153,7 @@ function displayShowList() {
         // sets styling for show buttons
         showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
         randShowEl.setAttribute('class','p-1 block');
-        showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+        showLink.setAttribute('style', 'color: white');
         showLink.textContent = genreShows.results[i].name;
 
         showLink.addEventListener('mouseover',function(){
@@ -228,16 +229,19 @@ genreLinks();
 
 function displayMyList() {
     mediaList = JSON.parse(localStorage.getItem('myList'));
+    if (mediaList === null) {
+        return
+    }
     console.log(mediaList);
     for (let i = 0; i < mediaList.length;i++) {
         if (mediaList[i].episode_run_time) {
             let hr = document.createElement('hr');
-            let randShowEl = document.createElement('li');
+            let listShowEl = document.createElement('li');
             let showLink = document.createElement('button');
             let listShowId = mediaList[i].id;
             showLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left')
-            randShowEl.setAttribute('class','p-1 block');
-            showLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+            listShowEl.setAttribute('class','p-1 block');
+            showLink.setAttribute('style', 'color: white');
             showLink.textContent = mediaList[i].name;
 
             showLink.addEventListener('mouseover',function(){
@@ -251,8 +255,8 @@ function displayMyList() {
                 clearStorage();
                 getShowById(listShowId);
             })
-            randShowEl.append(showLink,hr);
-            myListEl.append(randShowEl);
+            listShowEl.append(showLink,hr);
+            myListEl.append(listShowEl);
         } else {
             let hr = document.createElement('hr');
             let listMovieEl = document.createElement('li');
@@ -262,7 +266,7 @@ function displayMyList() {
             movieLink.textContent = mediaList[i].title;
             listMovieEl.setAttribute('class','p-1 block');
             movieLink.setAttribute('class','px-4 py-2 text-gray-900 rounded-s-lg text-left');
-            movieLink.setAttribute('style', 'color: white; transition: color 0.3s;');
+            movieLink.setAttribute('style', 'color: white');
 
             movieLink.addEventListener('mouseover',function(){
                 movieLink.style.color = 'red';
