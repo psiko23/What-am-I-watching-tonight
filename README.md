@@ -9,7 +9,13 @@ The user can choose from Movies or TV shows in an engaging way. The user has two
 If the user has decided what visual media to consume that day, they will also find on the discovery page where they can go to watch that particular choice. Thus, by using this website, the user will have answered the enigmatic question: "What am I watching tonight?"
 
 ## Authors and Credits
-Original <a href="https://github.com/psiko23/What-am-I-watching-tonight">sourcecode</a> created collectively by <a href="https://github.com/cjva24">CJ</a>, <a href="https://github.com/Gerlach0130">Michael</a>, <a href="https://github.com/EowynStark">Andria</a>, <a href="https://github.com/psiko23">Tyler</a>, and <a href="https://github.com/BrdwrdI">Billy</a>
+Original <a href="https://github.com/psiko23/What-am-I-watching-tonight">sourcecode</a> created collectively by:
+
+FrontEnd Devs
+<a href="https://github.com/cjva24">CJ</a> / <a href="https://github.com/Gerlach0130">Michael</a> / <a href="https://github.com/EowynStark">Andria</a> 
+
+BackEnd Devs
+<a href="https://github.com/psiko23">Tyler</a> / <a href="https://github.com/BrdwrdI">Billy</a>
 
 additional style features added by utilizing <a href="https://flowbite.com/docs/getting-started/introduction/">Flowbite</a> functionality
 
@@ -18,20 +24,22 @@ Version 1.0 created on Nov. 27, 2023
 
 
 ## Future Design Features
-Proposed updates or improvements: 
+Proposed updates or improvements:
+
+Adding onto the initial framework with a "Where to Watch" list, active visual "Trailers", and a "Top Cast and Crew" list 
 
 Adding visual of curtains opening when moving from one page to the next.
 
 Adding Video Games as a third visual entertainment option for users.
 
 ## Mock Up
-<a href="#">Link to live page</a>
+<a href="https://psiko23.github.io/What-am-I-watching-tonight/">Link to live page</a>
 
 Main Page
-<img src="#">
+<img src="./assets/images/127.0.0.1_5500_index.html.png">
 
 Second Page
-<img src="#">
+<img src="./assets/images/127.0.0.1_5500_display.html.png">
 
 ## Usage/License
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
